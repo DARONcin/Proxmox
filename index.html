@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Seguridad Proxmox</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1><i class="fas fa-shield-alt"></i> Seguridad Proxmox</h1>
+            <div class="status-badge" id="global-status">Conectando...</div>
+        </header>
+
+        <div class="grid-container">
+            <!-- HTTPS -->
+            <div class="card">
+                <div class="card-icon https">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>HTTPS</h3>
+                <p>Estado: <span class="status" id="https-status">--</span></p>
+                <p>Protocolo: <span id="https-protocol">--</span></p>
+                <p>Certificado: <span id="https-cert">--</span></p>
+            </div>
+
+            <!-- SSH -->
+            <div class="card">
+                <div class="card-icon ssh">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <h3>SSH</h3>
+                <p>Estado: <span class="status" id="ssh-status">--</span></p>
+                <p>Intentos fallidos: <span id="ssh-failures">--</span></p>
+                <p>Último acceso: <span id="ssh-last">--</span></p>
+            </div>
+
+            <!-- OAuth -->
+            <div class="card">
+                <div class="card-icon oauth">
+                    <i class="fas fa-user-lock"></i>
+                </div>
+                <h3>OAuth 2.0</h3>
+                <p>Estado: <span class="status" id="oauth-status">--</span></p>
+                <p>Sesiones: <span id="oauth-sessions">--</span></p>
+                <p>Token activo: <span id="oauth-token">--</span></p>
+            </div>
+
+            <!-- Blockchain -->
+            <div class="card">
+                <div class="card-icon blockchain">
+                    <i class="fas fa-link"></i>
+                </div>
+                <h3>Blockchain</h3>
+                <p>Estado: <span class="status" id="blockchain-status">--</span></p>
+                <p>Nodos: <span id="blockchain-nodes">--</span></p>
+                <p>Último bloque: <span id="blockchain-last">--</span></p>
+            </div>
+
+            <!-- Protecciones -->
+            <div class="card wide">
+                <div class="card-icon protection">
+                    <i class="fas fa-shield-virus"></i>
+                </div>
+                <h3>Protecciones</h3>
+                <div class="protection-grid">
+                    <div>
+                        <p>XSS: <span class="status" id="xss-status">--</span></p>
+                        <p>SQLi: <span class="status" id="sql-status">--</span></p>
+                    </div>
+                    <div>
+                        <p>Fail2Ban: <span class="status" id="fail2ban-status">--</span></p>
+                        <p>SFTP: <span class="status" id="sftp-status">--</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logs -->
+            <div class="card wide">
+                <h3><i class="fas fa-clipboard-list"></i> Registros de Seguridad</h3>
+                <div class="log-controls">
+                    <select id="log-type">
+                        <option value="all">Todos los registros</option>
+                        <option value="ssh">SSH</option>
+                        <option value="auth">Autenticación</option>
+                        <option value="blockchain">Blockchain</option>
+                    </select>
+                    <button id="refresh-logs"><i class="fas fa-sync-alt"></i> Actualizar</button>
+                </div>
+                <div class="logs" id="event-logs">
+                    <p>Cargando registros...</p>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Sistema seguro | Última actualización: <span id="last-update">--</span></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
